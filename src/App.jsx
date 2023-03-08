@@ -17,6 +17,10 @@ function App() {
     //console.log(lines);
     // Filter out empty lines
     // Parse the events from the input
+    //if first line has "UV", then slice the first line
+    if (lines[0].includes("UV")) {
+      lines = lines.slice(1);
+    }
     const events = lines
       .map((line) => {
         // Split the line into columns
@@ -60,11 +64,7 @@ function App() {
     for (var i = 0; i < events.length; i++) {
       console.log(events[i]);
     }*/   
-    const { error, value } = createEvents(events);
-    if (error) {
-      console.error(error);
-      return;
-    }
+    
     //console.log(value);
     
     const blob = new Blob([value], { type: "text/calendar;charset=utf-8" });
