@@ -7,7 +7,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+    try{
     // Split the input into lines
     var lines = inputText.split("\n");
     console.log(lines);
@@ -66,7 +66,12 @@ function App() {
     }*/   
     
     //console.log(value);
-    
+  
+    const { error, value } = createEvents(events);
+    if (error) {
+      console.error(error);
+      return;
+    }
     const blob = new Blob([value], { type: "text/calendar;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -74,6 +79,15 @@ function App() {
     a.download = "my-calendar.ics";
     a.click();
     URL.revokeObjectURL(url);
+  }catch (e) {
+    console.log("ERREUR=====");
+    const firstHoveredLogo = document.querySelector('.logo');
+    firstHoveredLogo.style = "filter: drop-shadow(0 0 2em #ef1616aa);"
+    setTimeout(() => {
+      firstHoveredLogo.style = "filter: none);"
+    }, 1000);
+  }
+
   };
 
   // Helper functions to convert day and time strings to Date values
