@@ -7,7 +7,7 @@
 
 .logo {
   height: 29em;
-  padding: 1.5em;
+  padding: 1.2em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -44,14 +44,29 @@
 
 .input {
   display: absolute;
-  width: 100%;
+  width: 100%;  
   padding: 1em;
   margin: 0.5em 0;
   height: 350px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 12px;
   box-sizing: border-box;
   text-size-adjust: auto;
   resize: none;
   overflow-wrap: normal;
+}
+
+.silly {
+  justify-content: center;
+  align-items: center;
+  min-width: 30%;
+  margin-bottom: 50px;
+  background-color: #646cffaa;
+  border: 2px solid #323ad3aa;
+  border-radius: 10px;
+}
+
+.silly p {
+  margin: 10px 0;
+  color: #fff;
 }

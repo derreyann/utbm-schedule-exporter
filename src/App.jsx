@@ -81,10 +81,10 @@ function App() {
     URL.revokeObjectURL(url);
   }catch (e) {
     console.log("ERREUR=====");
-    const firstHoveredLogo = document.querySelector('.logo');
+    const firstHoveredLogo = document.querySelector('.logo:hover');
     firstHoveredLogo.style = "filter: drop-shadow(0 0 2em #ef1616aa);"
     setTimeout(() => {
-      firstHoveredLogo.style = "filter: none);"
+      firstHoveredLogo.style = "filter: drop-shadow(0 0 2em #646cffaa);"
     }, 1000);
   }
 
@@ -156,26 +156,38 @@ function App() {
   };
   const getMinute = (time) => parseInt(time.split(":")[1]);
 
-  const getWeeksLeft = () => {
-    const now = new Date();
-    const yearStart = new Date(now.getFullYear(), 0, 1);
-    const sixMonthsLater = new Date(yearStart);
-    sixMonthsLater.setMonth(yearStart.getMonth() + 6);
-  
-    // Calculate the number of milliseconds between the start of the year and the current date
-    const diff = now.getTime() - yearStart.getTime();
-  
-    // Calculate the number of milliseconds in 6 months
-    const sixMonthDiff = sixMonthsLater.getTime() - yearStart.getTime();
-  
-    // Calculate the number of weeks left in the current semester
-    const weeksLeft = Math.floor((sixMonthDiff - diff) / (1000 * 60 * 60 * 24 * 7));
-  
-    return weeksLeft;
-  };
+const getWeeksLeft = () => {
+  const now = new Date();
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  const sixMonthsLater = new Date(yearStart);
+  sixMonthsLater.setMonth(yearStart.getMonth() + 6);
+
+  // Calculate the number of milliseconds between the start of the year and the current date
+  const diff = now.getTime() - yearStart.getTime();
+
+  // Calculate the number of milliseconds in 6 months
+  const sixMonthDiff = sixMonthsLater.getTime() - yearStart.getTime();
+
+  // Calculate the number of weeks left in the current semester
+  const weeksLeft = Math.floor((sixMonthDiff - diff) / (1000 * 60 * 60 * 24 * 7));
+
+  // Calculate the start date of the semester
+  const semesterStart = new Date(yearStart.getTime() + diff);
+
+  return { weeksLeft, semesterStart };
+};
+
+const { weeksLeft, semesterStart } = getWeeksLeft();
+const eventDate = new Date(semesterStart.getFullYear(), semesterStart.getMonth(), getDay("Monday") , getHour("09:00"), getMinute("00:00"));
+
 
   return (
     <div className="App">
+      <div className="silly">
+      <p><b>v1.1 ChangeLog</b></p>
+      <p>details</p>
+
+      </div>
       <h1>UTBM Calendar Export</h1>
       <form onSubmit={handleSubmit}>
         <div className="logo">
