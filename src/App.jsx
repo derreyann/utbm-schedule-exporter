@@ -49,10 +49,16 @@ function App() {
             rrule = `FREQ=WEEKLY;INTERVAL=${Fréquence};BYDAY=${dayrrule(Jour)};COUNT=${getWeeksLeft()}`;
         }
         console.log(rrule);
+        console.log(getWeeksLeft());
+        console.log(getHour(Début));
         return {
           title: `${UV} - ${Groupe} - ${GroupeNum}`,
           start: [2023, getMonth(), getDay(Jour), getHour(Début), getMinute(Début)],
+          startInputType: 'local',
+          startOutputType: 'local',
           end: [2023, getMonth(), getDay(Jour), getHour(Fin), getMinute(Fin)],
+          endInputType: 'local',
+          endOutputType: 'local',
           description: `Fréquence: ${Fréquence}\nMode: ${Mode}\nSalles: ${Salles}`,
           location: Salles,
           recurrenceRule: `${rrule}`,
@@ -128,20 +134,21 @@ function App() {
   // Get the month number from the current day
   const getMonth = () => {
     const now = new Date();
-    return now.getMonth() + 1;
+    const month = now.getMonth() + 1; // add 1 to get month number from 1 to 12
+    return month >= 1 && month <= 6 ? 1 : 9; // return 1 for first semester, 9 for second semester
   };
 
   const getDay = (day) => {
     const now = new Date();
-    const dayOfWeek = now.getDay();
+    const semesterStart = new Date(now.getFullYear(), getMonth() === 1 ? 0 : 8, 1); // get start date of current semester
+    const dayOfWeek = semesterStart.getDay(); // get day of the week of the start date
     const daysUntil = dayOfWeek < whichday(day) ? whichday(day) - dayOfWeek : 7 - (dayOfWeek - whichday(day));
-    let date = now.getDate() + (daysUntil === 0 ? 0 : daysUntil);
-  
+    let date = semesterStart.getDate() + daysUntil;
+    
     if (daysUntil === 0 || whichday(day)-1 >= dayOfWeek) {
       date += 7;
-      console.log(date);
     }
-  
+    
     return date;
   };
   
@@ -169,7 +176,7 @@ function App() {
     const sixMonthDiff = sixMonthsLater.getTime() - yearStart.getTime();
   
     // Calculate the number of weeks left in the current semester
-    const weeksLeft = Math.floor((sixMonthDiff - diff) / (1000 * 60 * 60 * 24 * 7));
+    const weeksLeft = Math.floor((sixMonthDiff) / (1000 * 60 * 60 * 24 * 7));
   
     return weeksLeft;
   };
