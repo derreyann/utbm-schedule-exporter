@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createEvents } from "ics";
 import "./App.css";
+import "./index.css";
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -88,7 +89,7 @@ function App() {
   }catch (e) {
     console.log("ERREUR=====");
     const firstHoveredLogo = document.querySelector('.logo');
-    firstHoveredLogo.style = "filter: drop-shadow(0 0 2em #ef1616aa);"
+    firstHoveredLogo.style = "filter: drop-shadow(0 0 2em #cd712037);"
     setTimeout(() => {
       firstHoveredLogo.style = "filter: none);"
     }, 1000);
@@ -183,6 +184,15 @@ function App() {
 
   return (
     <div className="App">
+      <div className="top-bar">
+        <a href="https://yann.works" target="_blank" rel="noreferrer">yann derré</a>
+      </div>
+      <div className="silly">
+      <p><b>v1.1 ChangeLog</b></p>
+      <p>-Fixed Timezones for daylight savings</p>
+      <p>-Slight UI changes</p>
+
+      </div>
       <h1>UTBM Calendar Export</h1>
       <form onSubmit={handleSubmit}>
         <div className="logo">
@@ -199,6 +209,7 @@ function App() {
     </div>
   );
 }
+
 
 
 

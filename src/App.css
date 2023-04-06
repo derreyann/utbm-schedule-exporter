@@ -5,14 +5,17 @@
   text-align: center;
 }
 
+
+
+
 .logo {
   height: 29em;
-  padding: 1.5em;
+  padding: 1.2em;
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #39ba3729);
 }
 
 .logo.react:hover {
@@ -44,14 +47,39 @@
 
 .input {
   display: absolute;
-  width: 100%;
+  width: 100%;  
   padding: 1em;
   margin: 0.5em 0;
   height: 350px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 12px;
   box-sizing: border-box;
   text-size-adjust: auto;
   resize: none;
   overflow-wrap: normal;
+  background-color: #F8F3EF;
+  color-scheme: light dark;
 }
+
+.silly {
+    display: flex;
+    align-items: center;
+    min-width: 30%;
+    margin-top: -25%;
+    margin-bottom: 25%;
+    background-color: #1f480f;
+    border: 2px solid #3c921b;
+    border-radius: 10px;
+    color-scheme: light dark;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.silly p {
+  margin: 10px 0;
+  color: #fff;
+  color-scheme: light dark;
+}
+
