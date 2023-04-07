@@ -92,6 +92,9 @@ button:focus-visible {
   .top-bar a{
     color: #3a1e05;
   }
+  .top-bar a:hover{
+    color:#398c29;
+  }
   
   
 }
@@ -138,6 +141,9 @@ button:focus-visible {
   }
   .top-bar a{
     color:#f5f2ef;
+  }
+  .top-bar a:hover{
+    color:#d7ae6c;
   }
 }
 
